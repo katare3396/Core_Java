@@ -83,11 +83,13 @@ public class Recursion {
      * 19) Implement a program to same character is get identical adjcent chars
      * are sep by *
      * 
+     * 20)Remove Duplicate Character
+     * 21) Implement a program to count number of times, the give word occurred.
      */
     public static void main(String[] args) {
 
         System.out.println("Sum n natural number " +
-                recursion_Sum_natural_Number(5));
+                recursion_Sum_natural_Number(9));
 
         System.out.println(" a power & b " + Power(9, 3));
 
@@ -129,7 +131,6 @@ public class Recursion {
         String wordOriginal = "teyou";
         String replaceOldWord = "e";
         String replaceNewWord = "srilanaka project";
-
         int compareWordLength = replaceOldWord.length();
         System.out.println("Replace Word " +
                 replaceString(wordOriginal, wordOriginal.length() - 1, replaceOldWord,
@@ -137,6 +138,15 @@ public class Recursion {
                         compareWordLength));
 
         System.out.println("sameCharacter_Inbetween_Add : -> " + sameCharacter_Inbetween_Add("aamol", 4));
+
+        String duplicate = "Amoltestsoftwaretest";
+        System.out.println("Remove Duplicate Character -> " + removeDuplicate(duplicate, duplicate.length() - 1));
+
+        String word = "veryamol very sdd dijnd ijedn ver re very";
+        String requiredWord = "very";
+        System.out.println("N number of word present in sentence -->"
+                + count_N_word(word, word.length() - 1, requiredWord.length() - 1,
+                        requiredWord));
     }
 
     // 1) Implement a program to calculate sum of 'n' natural numbers
@@ -428,4 +438,34 @@ public class Recursion {
             return sameCharacter_Inbetween_Add(s, index - 1) + s.charAt(index);
     }
 
+    // 20) Remove Duplicate Character
+    public static String removeDuplicate(String s, int length) {
+
+        if (s == null || s.length() == 1 || length == 0) {
+            return String.valueOf(s.charAt(0));
+        }
+
+        if (s.substring(0, length - 1).contains(String.valueOf(s.charAt(length)))) {
+            return removeDuplicate(s, length - 1);
+        } else
+            return removeDuplicate(s, length - 1) + s.charAt(length);
+    }
+
+    // 21) Implement a program to count number of times, the give word occurred.
+    static int n_Number_Word = 0;
+
+    public static int count_N_word(String s, int length, int countWord, String compareWord) {
+
+        if (length <= 0) {
+            return n_Number_Word;
+        }
+
+        if (s.substring(length - countWord, length + 1).equalsIgnoreCase(compareWord)) {
+            n_Number_Word++;
+            count_N_word(s, length - countWord, countWord, compareWord);
+        } else {
+            count_N_word(s, length - 1, countWord, compareWord);
+        }
+        return n_Number_Word;
+    }
 }
