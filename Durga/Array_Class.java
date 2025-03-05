@@ -8,7 +8,7 @@ public class Array_Class {
         sorting_Array_Asc(array_A);
         sorting_Array_DSC(array_A);
 
-        predifned_Method(array_A);
+        predefined_Method(array_A);
 
         second_Min_ElementArray(array_A);
 
@@ -73,7 +73,7 @@ public class Array_Class {
         }
     }
 
-    public static void predifned_Method(int[] a) {
+    public static void predefined_Method(int[] a) {
 
         Arrays.sort(a);
 
