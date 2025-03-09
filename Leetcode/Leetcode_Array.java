@@ -8,8 +8,11 @@ public class Leetcode_Array {
 
         int[] b = { 5, 6, 7, 8 };
 
-        System.out.println(findMedianSortedArrays(a, b));
-        // findMedianSortedArrays(a, b);
+        // System.out.println(findMedianSortedArrays(a, b));
+
+        int[] max_Area = { 1,8,6,2,5,4,8,3,7 };
+
+        System.out.println("Max Arear " +max_Area(max_Area));
     }
 
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
@@ -43,6 +46,30 @@ public class Leetcode_Array {
             return (double) b[((c - 1) / 2)];
 
         }
-
     }
+
+    public static int max_Area(int[] height) {
+
+        int length = (height.length) ;
+
+        int maxxArea = 0;
+        int newArea = 0;
+        for (int i = 0; i < length; i++) {
+
+            for (int j = i + 1; j < length; j++) {
+
+                if (height[i] > height[j]) {
+                    newArea = height[j] * (j - i);
+                } else {
+                    newArea = height[i] * (j - i);
+                }
+
+                if (newArea > maxxArea) {
+                    maxxArea = newArea;
+                }
+            }
+        }
+        return maxxArea;
+    }
+
 }
