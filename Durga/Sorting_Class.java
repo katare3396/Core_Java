@@ -15,7 +15,7 @@ public class Sorting_Class {
      */
     public static void main(String[] args) {
 
-        int array_A[] = { 0, 0, 0, 0 };
+        int array_A[] = { 2, 1, 4, 0  , -1};
 
         // System.out.println("bubble sort: ASC" +
         // Arrays.toString(bubblesort_ASC(array_A)));
@@ -37,7 +37,9 @@ public class Sorting_Class {
 
         // quick_Sort(array_A, 0, array_A.length - 1);
 
-        quick_Sort_Pivot_Left(array_A, 0, array_A.length - 1);
+        // quick_Sort_Pivot_Left(array_A, 0, array_A.length - 1);
+
+        merge_Sort(array_A, array_A.length);
     }
 
     // 1) bubble sort: Ascending order
@@ -166,6 +168,27 @@ public class Sorting_Class {
         return a;
     }
 
+    /*
+     * Pivot select right
+     *  [2,4,5,6,7]
+     * 
+     * pivot --> 7
+     * 
+     * working array --> [2,4,5,6]
+     * 
+     * pivot compare left (small)
+     * pivot compare right (large)
+     * 
+     * not satisy
+     * swap left & right
+     * 
+     * (left < right)
+     * condtion not satisy than swap (right pivot & left)
+     * condtion not satisy than swap (left pivot & right)
+     * 
+     * Iteration left side
+     * Iteration right side
+     */
     // 7) Quick Sort pivot right
     public static void quick_Sort(int[] a, int leftIndex, int rightIndex) {
         // Base condition: If the array has one or no elements, it's already sorted
@@ -261,6 +284,8 @@ public class Sorting_Class {
      * [5] [6]
      * right side iteration (right)
      * [7] [8]
+     * 
+     * small value put  first & large value put in second
      */
     public static void merge_Sort(int a[], int n) {
 
@@ -276,12 +301,39 @@ public class Sorting_Class {
         for (int i = 0; i < mid; i++) {
             left[i] = a[i];
         }
-        for (int i = (mid + 1); i > n; i++) {
-            right[i - mid] = a[i];
+        int j = 0;
+        for (int i = mid; i < n; i++) {
+            right[j++] = a[i];
         }
+
+        System.out.println("Before Sort "+Arrays.toString(a));
         // Left side
         merge_Sort(left, left.length);
         // Right side
         merge_Sort(right, right.length);
+
+        merge(a, left, right, mid, n - mid);
+    }
+
+    private static void merge(int[] a, int[] l, int[] r, int left, int right) {
+
+        int i = 0, j = 0, k = 0;
+
+        // Compare left is greated or right (small value put in first index)
+        while (i < left && j < right) {
+            if (l[i] <= r[j])
+                a[k++] = l[i++];
+            else
+                a[k++] = r[j++];
+        }
+
+        // Greater value put in second index
+        while (i < left)
+            a[k++] = l[i++];
+        while (j < right)
+            a[k++] = r[j++];
+
+        System.out.println("After sort "+Arrays.toString(a));
+
     }
 }
