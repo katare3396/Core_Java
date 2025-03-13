@@ -1,18 +1,23 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Leetcode_Array {
 
     public static void main(String[] args) {
 
-        int[] a = { 1, 2, 3, 4 };
+        int[] a = { -1, 0, 1, 2, -1, -4 };
 
         int[] b = { 5, 6, 7, 8 };
 
         // System.out.println(findMedianSortedArrays(a, b));
 
-        int[] max_Area = { 1,8,6,2,5,4,8,3,7 };
+        int[] max_Area = { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
 
-        System.out.println("Max Arear " +max_Area(max_Area));
+        // System.out.println("Max Arear " + max_Area(max_Area));
+
+        System.out.println("Array find triple  " + threeSum(a));
     }
 
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
@@ -50,7 +55,7 @@ public class Leetcode_Array {
 
     public static int max_Area(int[] height) {
 
-        int length = (height.length) ;
+        int length = (height.length);
 
         int maxxArea = 0;
         int newArea = 0;
@@ -70,6 +75,35 @@ public class Leetcode_Array {
             }
         }
         return maxxArea;
+    }
+
+    public static List<List<Integer>> threeSum(int[] nums) {
+
+        int length = nums.length;
+
+        List<List<Integer>> nestedList = new ArrayList<>();
+
+        for (int i = 0; i < length; i++) {
+
+            int j = i + 1;
+            for (; j < length; j++) {
+                int k = j + 1;
+                for (; k < length; k++) {
+                    if (nums[i] + nums[j] + nums[k] == 0) {
+                        List<Integer> sortedNewList = Arrays.asList(nums[i], nums[j], nums[k]);
+                        Collections.sort(sortedNewList);
+                        for (List<Integer> existingList : nestedList) {
+                            List<Integer> sortedExistingList = new ArrayList<>(existingList);
+                            Collections.sort(sortedExistingList);
+                            if (!sortedExistingList.equals(sortedNewList)) {
+                                nestedList.add(Arrays.asList(nums[i], nums[j], nums[k]));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return nestedList;
     }
 
 }

@@ -11,11 +11,20 @@ public class Sorting_Class {
 
     /*
      * 1) bubble sort: Ascending order
+     * 2) bubble sort: Descending order
+     * 3) Selection Sort ASC
+     * 4) Selection Sort DSC
+     * 5)INsertion Sort (Playing card)
+     * 6) Insertion sort Dsc
+     * 7) Quick Sort pivot right
+     * 8) Quick sort Pivot left
+     * 9) Merge Sort
+     * 10) Shell sort
      * 
      */
     public static void main(String[] args) {
 
-        int array_A[] = { 2, 1, 4, 0  , -1};
+        int array_A[] = { 5, 3, 1, 4, 2, 6 };
 
         // System.out.println("bubble sort: ASC" +
         // Arrays.toString(bubblesort_ASC(array_A)));
@@ -39,7 +48,9 @@ public class Sorting_Class {
 
         // quick_Sort_Pivot_Left(array_A, 0, array_A.length - 1);
 
-        merge_Sort(array_A, array_A.length);
+        // merge_Sort(array_A, array_A.length);
+
+        shell_Sort(array_A);
     }
 
     // 1) bubble sort: Ascending order
@@ -169,8 +180,9 @@ public class Sorting_Class {
     }
 
     /*
+     * 7) Quick Sort pivot right
      * Pivot select right
-     *  [2,4,5,6,7]
+     * [2,4,5,6,7]
      * 
      * pivot --> 7
      * 
@@ -266,6 +278,7 @@ public class Sorting_Class {
     }
 
     /*
+     * 9) Merge Sort
      * Merge Sort
      * 
      * [2 ,3 , 4, 5, 6, 7 , 8]
@@ -285,7 +298,7 @@ public class Sorting_Class {
      * right side iteration (right)
      * [7] [8]
      * 
-     * small value put  first & large value put in second
+     * small value put first & large value put in second
      */
     public static void merge_Sort(int a[], int n) {
 
@@ -306,7 +319,7 @@ public class Sorting_Class {
             right[j++] = a[i];
         }
 
-        System.out.println("Before Sort "+Arrays.toString(a));
+        System.out.println("Before Sort " + Arrays.toString(a));
         // Left side
         merge_Sort(left, left.length);
         // Right side
@@ -333,7 +346,64 @@ public class Sorting_Class {
         while (j < right)
             a[k++] = r[j++];
 
-        System.out.println("After sort "+Arrays.toString(a));
+        System.out.println("After sort " + Arrays.toString(a));
 
     }
+
+    // 10) Shell sort
+    /*
+     * [5,3,1,4,2,6]
+     * 
+     * First find gap -> (6/2) -> 3
+     * 
+     * second start compare 0 index (1 postion) & 2 index ( Gap)
+     * 0 index should less than 2 index
+     * 0 index is greater than 2 index (swap)
+     * [4,2,1,5,3,6]
+     * 
+     * Three step
+     * 0 index is greater than 1 index interchange postion
+     * 0 index is less than 1 index --> more (compare 1 index & 2index)
+     * 
+     * compare 2 index
+     * 0 index is less than 2 , 1 index
+     * [4,2,1,5,3,6]
+     * <-- less value than compare all element toward left
+     * 
+     * final
+     * [1, 2, 3, 4, 5, 6]
+     */
+    public static void shell_Sort(int[] arr) {
+        int n = arr.length;
+
+        // Start with a gap of n/2, then reduce it by half
+        for (int gap = n / 2; gap > 0; gap /= 2) {
+
+            // Perform a gapped insertion sort for this gap
+            for (int i = gap; i < n; i++) {
+                System.out.println(i + "  i " + gap + "  gap ");
+                int temp = arr[i];
+                int j;
+
+                // Shift earlier gap-sorted elements until the correct location is found
+                for (j = i; j >= gap; j = j - gap) {
+
+                    System.out.println(" j " + j + " gap " + gap + "Subtarct " + (j - gap) + " i " + i);
+                    if (arr[j - gap] < temp) {
+                        break;
+                    } else {
+                        arr[j] = arr[j - gap];
+                    }
+                }
+
+                // Place the current element at its correct location
+                arr[j] = temp;
+            }
+            System.out.println(Arrays.toString(arr));
+        }
+
+        // Output the sorted array
+        System.out.println("Sorted array: " + Arrays.toString(arr));
+    }
+
 }
