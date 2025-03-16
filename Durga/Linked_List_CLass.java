@@ -45,6 +45,29 @@ public class Linked_List_CLass {
 
     public static void main(String[] args) {
 
+        // 01) Inserting the data first
+        ll.addFirst(300);
+        ll.addFirst(200);
+        ll.addFirst(100);
+
+        // 02) Inserting the data last
+        ll.addLast(400);
+        ll.addLast(500);
+        ll.addLast(600);
+
+        // 05) Traversing or Displaying
+        ll.println();
+
+        // 06) Size or Length of list
+        System.out.println(" Size of list --> " + ll.size_List());
+
+        // 08) Searching
+        System.out.println("Searching  " + ll.search(400));
+
+        ll.deleteFirst();
+        ll.println();
+
+        ll.deleteLast();
         ll.println();
 
     }

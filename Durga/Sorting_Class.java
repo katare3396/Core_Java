@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Sorting_Class {
@@ -48,9 +49,18 @@ public class Sorting_Class {
 
         // quick_Sort_Pivot_Left(array_A, 0, array_A.length - 1);
 
-        // merge_Sort(array_A, array_A.length);
+        merge_Sort(array_A, array_A.length);
 
-        shell_Sort(array_A);
+        // shell_Sort(array_A);
+
+        // System.out.println("Linear search " + linear_Search(array_A, 499));
+
+        // System.out.println("Linear Search have index mutiple Result " +
+        // linear_search(array_A, 5));
+
+        // System.out.println("Binary Search " + binarySearch(array_A, 55));
+
+        System.out.println("Binary search " + binarySearch_Recursion(array_A, 0, (array_A.length - 1), 7));
     }
 
     // 1) bubble sort: Ascending order
@@ -101,8 +111,8 @@ public class Sorting_Class {
             int min = i;
             for (int j = i + 1; j < length; j++) {
 
-                // Selection index
-                if (a[i] > a[j]) {
+                // Selection index (Compare min & i)
+                if (a[min] > a[j]) {
                     min = j;
                 }
             }
@@ -406,4 +416,75 @@ public class Sorting_Class {
         System.out.println("Sorted array: " + Arrays.toString(arr));
     }
 
+    /*
+     * Searching
+     */
+    // 1) Linear Search
+    public static Boolean linear_Search(int[] a, int SearchValue) {
+
+        int length = a.length;
+
+        for (int i = 0; i < length; i++) {
+            if (a[i] == SearchValue) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Linear search Mutiple data
+    public static ArrayList<Integer> linear_search(int[] a, int search_key) {
+
+        int length = a.length;
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i = 0; i < length; i++) {
+
+            if (a[i] == search_key) {
+                list.add(i);
+            }
+
+        }
+        return list;
+    }
+
+    // Binary search
+    public static int binarySearch(int[] a, int key) {
+
+        int length = a.length;
+        int low = 0;
+        int high = length - 1;
+
+        while (low <= high) {
+
+            int mid = (low + high) / 2;
+
+            if (a[mid] == key) {
+                return mid;
+            } else if (a[mid] > key) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return -1;
+    }
+
+    // Binary search by Recursion
+    public static int binarySearch_Recursion(int[] a, int low_index, int high_index, int key) {
+
+        int middle = (low_index + high_index) / 2;
+
+        if (low_index > high_index) {
+            return -1;
+        }
+
+        if (a[middle] == key) {
+            return middle;
+        } else if (a[middle] > key) {
+            return binarySearch_Recursion(a, low_index, middle - 1, key);
+        } else {
+            return binarySearch_Recursion(a, middle + 1, high_index, key);
+        }
+
+    }
 }
