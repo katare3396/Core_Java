@@ -1,6 +1,4 @@
 
-import java.util.*;
-
 public class leetcode_Recursion {
 
     public static void main(String[] args) {
