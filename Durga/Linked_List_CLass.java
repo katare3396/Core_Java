@@ -45,6 +45,8 @@ public class Linked_List_CLass {
 
     public static void main(String[] args) {
 
+        // ll.Linked_list_working();
+
         // 01) Inserting the data first
         // ll.addFirst(300);
         // ll.addFirst(200);
@@ -66,17 +68,17 @@ public class Linked_List_CLass {
         // ll.Insertion_Asc(500);
 
         // 04A) Sorted Insertion Desc
-        ll.Insertion_Dsc(150);
-        ll.Insertion_Dsc(250);
-        ll.Insertion_Dsc(50);
-        ll.Insertion_Dsc(5);
         ll.Insertion_Dsc(500);
+        ll.Insertion_Dsc(250);
+        // ll.Insertion_Dsc(50);
+        // ll.Insertion_Dsc(500);
+        // ll.Insertion_Dsc(500);
 
         // 05) Traversing or Displaying
         ll.println();
 
         // 06) Size or Length of list
-        // System.out.println(" Size of list --> " + ll.size_List());
+        System.out.println(" Size of list --> " + ll.size_List());
 
         // 08) Searching
         // System.out.println("Searching " + ll.search(400));
@@ -84,9 +86,30 @@ public class Linked_List_CLass {
         // ll.deleteFirst();
         // ll.println();
 
+        // 10) Deleting from last
         // ll.deleteLast();
         // ll.println();
+        // System.out.println(" Size of list --> " + ll.size_List());
 
+        // 11) Delete Element
+        // ll.deleteElement(500);
+        // ll.println();
+        // System.out.println(" Size of list --> " + ll.size_List());
+
+        // 12) deleteElements
+        // ll.deleteElements(500);
+        // ll.println();
+        // System.out.println(" Size of list --> " + ll.size_List());
+
+        // 13) DeleteElementAt Position
+        // ll.deleteElementAtPosition(3);
+        // ll.println();
+        // System.out.println(" Size of list --> " + ll.size_List());
+
+        //  14) Reverse
+        ll.reverse();
+        ll.println();
+        System.out.println(" Size of list --> " + ll.size_List());
     }
 
 }

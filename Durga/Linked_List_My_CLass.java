@@ -16,6 +16,26 @@ public class Linked_List_My_CLass {
         }
     }
 
+    // Demo Linked list
+    void Linked_list_working() {
+
+        Node a = new Node(10);
+        Node b = new Node(20);
+        Node c = new Node(30);
+        Node d = new Node(40);
+        Node e = new Node(50);
+
+        a.next = b;
+        // a -> Address store b -> Address store (10 -> 20)
+        System.out.println("a Address b store than give b data " + a.next.data);
+        b.next = c;
+        // 10 -> 20 -> 30
+        c.next = d;
+        // 10 -> 20 -> 30 -> 40
+        d.next = e;
+        // 10 -> 20 -> 30 -> 40 -> 50
+    }
+
     void println() {
 
         if (head == null) {
@@ -248,6 +268,8 @@ public class Linked_List_My_CLass {
         Node temp1 = head;
         Node temp2 = head.next;
 
+        size--;
+
         while (temp2.next != null) {
 
             temp1 = temp1.next;
@@ -255,4 +277,123 @@ public class Linked_List_My_CLass {
         }
         temp1.next = null;
     }
+
+    // 11) Delete Element
+
+    void deleteElement(int data) {
+
+        Node temp = head;
+
+        if (temp == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        if (temp.data == data) {
+            temp = temp.next;
+            head = temp;
+            size--;
+            return;
+        }
+
+        while (temp.next != null) {
+
+            if (temp.next.data == data) {
+                temp.next = temp.next.next;
+                size--;
+                return;
+            }
+            temp = temp.next;
+        }
+    }
+
+    // 12) Delete Elements
+    void deleteElements(int data) {
+        Node temp = head;
+        if (temp == null) {
+            System.out.println("empty");
+            return;
+        }
+
+        // Handle the case where the head node(s) match the data
+        while (head != null && head.data == data) {
+            head = head.next;
+            size--;
+        }
+
+        // If the list is empty after removing matching head nodes
+        if (head == null) {
+            return;
+        }
+
+        // Handle the rest of the list
+        temp = head;
+        while (temp.next != null) {
+            if (temp.next.data == data) {
+                temp.next = temp.next.next;
+                size--;
+            } else {
+                temp = temp.next;
+            }
+        }
+    }
+
+    // 13) Delete Element at position
+    void deleteElementAtPosition(int position) {
+
+        Node temp = head;
+        int i = 0;
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        if (position == 0) {
+            head = head.next;
+            size--;
+            return;
+        }
+
+        while (temp.next != null && i < position) {
+
+            if ((i + 1) == position) {
+                temp.next = temp.next.next;
+                size--;
+            }
+            temp = temp.next;
+            i++;
+        }
+    }
+
+    // 14) Reverse 
+    /*
+     * head( 1 ) --> 2 --> 3 --> 4 --> 5 --> null
+     * 
+     * null 1 <-- 2 <-- 3 <-- 4 <-- (5) head
+     * 
+     * (Reverse is possible by recursion)
+     */
+    void reverse() {
+
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        Node forward = null;
+        Node backward = null;
+        Node current = head;
+
+        while (current != null) {
+
+            forward = current.next;
+            current.next = backward;
+            backward = current;
+            current = forward;
+        }
+
+        head = backward;
+    }
+
+
 }
